@@ -9,15 +9,14 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'pry'
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'factory_girl'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'pry'
 end
 
 group :test do
