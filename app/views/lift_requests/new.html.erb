@@ -1,0 +1,6 @@
+<%= render partial: "/lift_requests/errors" %>
+
+<%= form_for @lift_request do |f| %>
+  <%= render partial: "/lift_requests/form" %>
+  <%= f.submit "Request a Ride" %>
+<% end %>

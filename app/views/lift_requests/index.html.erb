@@ -1,0 +1,11 @@
+<h2>Lift Requests</h2>
+<%= button_to "Request a Ride", new_lift_request_path %>
+
+<% @lift_requests.each do |request| %>
+  <div>
+    From:
+    <div><%= link_to "#{request.origin.address}", lift_request_path(request) %></div>
+    To:
+    <div><%= request.origin.address %></div>
+  </div>
+<% end %>

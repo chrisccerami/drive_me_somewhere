@@ -1,0 +1,15 @@
+<% if @lift_request.errors.any? %>
+  <% @lift_request.errors.full_messages.each do |error| %>
+    <%= error %>
+  <% end %>
+  <% if @lift_request.origin.errors.any? %>
+    <% @lift_request.origin.errors.full_messages.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+  <% if @lift_request.destination.errors.any? %>
+    <% @lift_request.destination.errors.full_messages.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+<% end %>
