@@ -1,0 +1,39 @@
+<%= fields_for :origin, @lift_request.origin do |origin_form| %>
+  <%= origin_form.label :longitude, "Origin Longitude" %>
+  <%= origin_form.text_field :longitude %>
+
+  <%= origin_form.label :latitude, "Origin Latitude" %>
+  <%= origin_form.text_field :latitude %>
+
+  <%= origin_form.label :address, "Origin Address" %>
+  <%= origin_form.text_field :address %>
+
+  <%= origin_form.label :city, "Origin City" %>
+  <%= origin_form.text_field :city %>
+
+  <%= origin_form.label :state, "Origin State" %>
+  <%= origin_form.text_field :state %>
+
+  <%= origin_form.label :zip_code, "Origin Zip Code" %>
+  <%= origin_form.text_field :zip_code %>
+<% end %>
+
+<%= fields_for :destination, @lift_request.destination do |destination_form| %>
+  <%= destination_form.label :longitude, "Destination Longitude" %>
+  <%= destination_form.text_field :longitude %>
+
+  <%= destination_form.label :latitude, "Destination Latitude" %>
+  <%= destination_form.text_field :latitude %>
+
+  <%= destination_form.label :address, "Destination Address" %>
+  <%= destination_form.text_field :address %>
+
+  <%= destination_form.label :city, "Destination City" %>
+  <%= destination_form.text_field :city %>
+
+  <%= destination_form.label :state, "Destination State" %>
+  <%= destination_form.text_field :state %>
+
+  <%= destination_form.label :zip_code, "Destination Zip Code" %>
+  <%= destination_form.text_field :zip_code %>
+<% end %>

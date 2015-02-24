@@ -11,7 +11,7 @@ feature "Lift Request" do
     fill_in "Origin Address", with: "18 Fairbanks St"
     fill_in "Origin City", with: "Boston"
     fill_in "Origin State", with: "MA"
-    fill_in "Origin Zip Code", with: "07110"
+    fill_in "Origin Zip Code", with: "02135"
 
     fill_in "Destination Longitude", with: 40.834362
     fill_in "Destination Latitude", with: -74.162015
@@ -35,5 +35,22 @@ feature "Lift Request" do
     click_on "Request a Ride"
 
     expect(page).to have_content "is invalid"
+  end
+
+  it "edits a request when valid" do
+    user = FactoryGirl.create(:user)
+    sign_in(user)
+    lift_request = FactoryGirl.create(:lift_request, user: user)
+
+    visit edit_lift_request_path(lift_request)
+
+    fill_in "Destination Address", with: "33 Harrison St"
+    fill_in "Destination City", with: "Boston"
+    fill_in "Destination State", with: "MA"
+    fill_in "Destination Zip Code", with: "02112"
+    click_on "Update Lift Request"
+
+    expect(page).to have_content "Request updated"
+    expect(page).to have_content "33 Harrison St"
   end
 end

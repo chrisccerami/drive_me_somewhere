@@ -19,6 +19,22 @@ class LiftRequestsController < ApplicationController
     end
   end
 
+  def edit
+    @lift_request = current_user.lift_requests.find(params[:id])
+  end
+
+  def update
+    @lift_request = current_user.lift_requests.find(params[:id])
+    @lift_request.origin.update(origin_params)
+    @lift_request.destination.update(destination_params)
+    if @lift_request.save
+      flash[:notice] = "Request updated"
+      redirect_to lift_request_path(@lift_request)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def origin_params
