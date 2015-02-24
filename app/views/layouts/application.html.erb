@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<div>
+  <% if !signed_in? %>
+    <%= link_to "Sign In", new_user_session_path %>
+    <%= link_to "Sign Up", new_user_registration_path %>
+  <% elsif signed_in? %>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+  <% end %>
+</div>
+
 <% flash.each do |key, value| %>
   <div class="flash flash-<%= key %>">
     <%= value %>

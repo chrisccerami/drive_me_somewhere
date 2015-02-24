@@ -1,4 +1,6 @@
 class LiftRequestsController < ApplicationController
+  before_filter :authenticate_user!, except: [:show, :index]
+
   def show
     @lift_request = LiftRequest.find(params[:id])
   end
