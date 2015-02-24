@@ -1,0 +1,3 @@
+language: ruby
+before_script:
+  - psql -c 'create database drive_me_somewhere_test;' -U postgres
