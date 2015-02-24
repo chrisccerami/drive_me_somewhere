@@ -39,9 +39,9 @@ class LiftRequestsController < ApplicationController
 
   def origin_params
     params.require(:origin).permit(:longitude, :latitude,
-                                  :address, :city,
-                                  :state, :zip_code
-                                  )
+                                   :address, :city,
+                                   :state, :zip_code
+                                   )
   end
 
   def destination_params
