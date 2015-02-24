@@ -1,0 +1,10 @@
+<% @lift_requests.each do |request| %>
+  <p>
+    From:
+    <div><%= link_to "request.origin.address", link_request_path(request) %></div>
+  </p>
+  <p>
+    To:
+    <div><%= request.origin.address %></div>
+  </p>
+<% end %>

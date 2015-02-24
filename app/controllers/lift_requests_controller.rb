@@ -3,6 +3,10 @@ class LiftRequestsController < ApplicationController
     @lift_request = LiftRequest.find(params[:id])
   end
 
+  def index
+    @lift_requests = LiftRequest.all
+  end
+
   def new
     @lift_request = LiftRequest.new
   end
@@ -32,6 +36,16 @@ class LiftRequestsController < ApplicationController
       redirect_to lift_request_path(@lift_request)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    @lift_request = current_user.lift_requests.find(params[:id])
+    if @lift_request.destroy
+      flash[:notice] = "Request cancelled"
+      redirect_to lift_requests_path
+    else
+      render :show
     end
   end
 

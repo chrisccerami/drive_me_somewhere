@@ -66,4 +66,19 @@ feature "Lift Request" do
       expect(page).to have_content "is invalid"
     end
   end
+
+  context "deleting a request" do
+    it "removes the request" do
+      user = FactoryGirl.create(:user)
+      sign_in(user)
+      lift_request = FactoryGirl.create(:lift_request, user: user)
+
+      visit lift_request_path(lift_request)
+
+      click_on "Cancel Request"
+
+      expect(page).to have_content "Request cancelled"
+      expect(page).not_to have_content lift_request.destination.address
+    end
+  end
 end

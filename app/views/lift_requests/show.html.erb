@@ -1,3 +1,17 @@
-<%= @lift_request.origin.address %>
+<p>
+  User needs a ride from:
+  <div><%= @lift_request.origin.address %></div>
+  <div><%= @lift_request.origin.city %>
+  <%= @lift_request.origin.state %>
+  <%= @lift_request.origin.zip_code %></div>
+  <div>Requested at: <%= @lift_request.origin.created_at %></div>
+</p>
+<p>
+  And needs a ride to:
+  <div><%= @lift_request.destination.address %></div>
+  <div><%= @lift_request.destination.city %>
+  <%= @lift_request.destination.state %>
+  <%= @lift_request.destination.zip_code %></div>
+</p>
 
-<%= @lift_request.destination.address %>
+<%= button_to "Cancel Request", lift_request_path(@lift_request), method: :delete %>
