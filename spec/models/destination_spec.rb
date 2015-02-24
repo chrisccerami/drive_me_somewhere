@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-describe Origin do
+RSpec.describe Destination do
   describe "attributes" do
     it { should respond_to :lift_request_id }
     it { should respond_to :longitude }
