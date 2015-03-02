@@ -23,4 +23,25 @@ describe Origin do
     it { should validate_presence_of :state }
     it { should validate_presence_of :zip_code }
   end
+
+  context "geocoding" do
+    it "should geocode before saving" do
+      origin = Origin.create(address: "66 Kenzel Ave", city: "Nutley", state: "NJ", zip_code: "07110")
+
+      expect(origin.longitude).not_to eq(nil)
+      expect(origin.latitude).not_to eq(nil)
+    end
+
+    it "should add an error if geocoding fails" do
+      origin = Origin.create
+
+      expect(origin.errors.full_messages).to include("Longitude Geocoding failed")
+      expect(origin.errors.full_messages).to include("Latitude Geocoding failed")
+    end
+  end
+
+  it "formats the address" do
+    origin = Origin.new(address: "66 Kenzel Ave", city: "Nutley", state: "NJ", zip_code: "07110")
+    expect(origin.full_address).to eq "66 Kenzel Ave, Nutley, NJ 07110"
+  end
 end
