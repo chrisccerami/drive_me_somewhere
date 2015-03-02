@@ -9,6 +9,7 @@ RSpec.describe User do
 
   describe "associations" do
     it { should have_many :lift_requests }
+    it { should have_one :driver }
   end
 
   describe "validations" do
