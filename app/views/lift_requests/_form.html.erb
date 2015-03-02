@@ -1,13 +1,5 @@
 <%= fields_for :origin, @lift_request.origin do |origin_form| %>
   <div>
-    <%= origin_form.label :longitude, "Origin Longitude" %>
-    <%= origin_form.text_field :longitude %>
-  </div>
-  <div>
-    <%= origin_form.label :latitude, "Origin Latitude" %>
-    <%= origin_form.text_field :latitude %>
-  </div>
-  <div>
     <%= origin_form.label :address, "Origin Address" %>
     <%= origin_form.text_field :address %>
   </div>
@@ -26,14 +18,6 @@
 <% end %>
 
 <%= fields_for :destination, @lift_request.destination do |destination_form| %>
-  <div>
-    <%= destination_form.label :longitude, "Destination Longitude" %>
-    <%= destination_form.text_field :longitude %>
-  </div>
-  <div>
-    <%= destination_form.label :latitude, "Destination Latitude" %>
-    <%= destination_form.text_field :latitude %>
-  </div>
   <div>
     <%= destination_form.label :address, "Destination Address" %>
     <%= destination_form.text_field :address %>

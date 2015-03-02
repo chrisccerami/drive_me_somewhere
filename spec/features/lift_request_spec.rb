@@ -9,15 +9,11 @@ feature "Lift Request" do
     end
 
     it "with valid attributes" do
-      fill_in "Origin Longitude", with: 42.349932
-      fill_in "Origin Latitude", with: -71.163295
       fill_in "Origin Address", with: "18 Fairbanks St"
       fill_in "Origin City", with: "Boston"
       fill_in "Origin State", with: "MA"
       fill_in "Origin Zip Code", with: "02135"
 
-      fill_in "Destination Longitude", with: 40.834362
-      fill_in "Destination Latitude", with: -74.162015
       fill_in "Destination Address", with: "66 Kenzel Ave"
       fill_in "Destination City", with: "Nutley"
       fill_in "Destination State", with: "NJ"
