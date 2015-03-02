@@ -26,7 +26,8 @@ describe Origin do
 
   context "geocoding" do
     it "should geocode before saving" do
-      origin = Origin.create(address: "66 Kenzel Ave", city: "Nutley", state: "NJ", zip_code: "07110")
+      origin = Origin.create(address: "66 Kenzel Ave", city: "Nutley",
+                             state: "NJ", zip_code: "07110")
 
       expect(origin.longitude).not_to eq(nil)
       expect(origin.latitude).not_to eq(nil)
@@ -35,20 +36,23 @@ describe Origin do
     it "should add an error if geocoding fails" do
       origin = Origin.create
 
-      expect(origin.errors.full_messages).to include("Longitude Geocoding failed")
-      expect(origin.errors.full_messages).to include("Latitude Geocoding failed")
+      error_messages = origin.errors.full_messages
+      expect(error_messages).to include("Longitude Geocoding failed")
+      expect(error_messages).to include("Latitude Geocoding failed")
     end
 
     it "prioritizes entered lat and lng over geocoded values" do
-      origin = Origin.create(address: "66 Kenzel Ave", city: "Nutley", state: "NJ",
-                             zip_code: "07110", latitude: 40.834362, longitude: -74.162015)
+      origin = Origin.create(address: "66 Kenzel Ave", city: "Nutley",
+                             state: "NJ", zip_code: "07110",
+                             latitude: 40.834362, longitude: -74.162015)
       expect(origin.latitude.to_f).to eq 40.834362
       expect(origin.longitude.to_f).to eq -74.162015
     end
   end
 
   it "formats the address" do
-    origin = Origin.new(address: "66 Kenzel Ave", city: "Nutley", state: "NJ", zip_code: "07110")
+    origin = Origin.new(address: "66 Kenzel Ave", city: "Nutley",
+                        state: "NJ", zip_code: "07110")
     expect(origin.full_address).to eq "66 Kenzel Ave, Nutley, NJ 07110"
   end
 end

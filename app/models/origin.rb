@@ -18,7 +18,7 @@ class Origin < ActiveRecord::Base
   end
 
   def geocode
-    if !self.longitude || !self.latitude
+    if !longitude || !latitude
       location = Geokit::Geocoders::MultiGeocoder.geocode(full_address)
       if location.success
         self.longitude = location.lng
@@ -29,5 +29,4 @@ class Origin < ActiveRecord::Base
       end
     end
   end
-
 end
