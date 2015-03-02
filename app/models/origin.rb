@@ -18,13 +18,16 @@ class Origin < ActiveRecord::Base
   end
 
   def geocode
-    location = Geokit::Geocoders::MultiGeocoder.geocode(full_address)
-    if location.success
-      self.longitude = location.lng
-      self.latitude = location.lat
-    else
-      errors.add(:longitude, "Geocoding failed")
-      errors.add(:latitude, "Geocoding failed")
+    if !self.longitude || !self.latitude
+      location = Geokit::Geocoders::MultiGeocoder.geocode(full_address)
+      if location.success
+        self.longitude = location.lng
+        self.latitude = location.lat
+      else
+        errors.add(:longitude, "Geocoding failed")
+        errors.add(:latitude, "Geocoding failed")
+      end
     end
   end
+
 end

@@ -38,6 +38,13 @@ describe Origin do
       expect(origin.errors.full_messages).to include("Longitude Geocoding failed")
       expect(origin.errors.full_messages).to include("Latitude Geocoding failed")
     end
+
+    it "prioritizes entered lat and lng over geocoded values" do
+      origin = Origin.create(address: "66 Kenzel Ave", city: "Nutley", state: "NJ",
+                             zip_code: "07110", latitude: 40.834362, longitude: -74.162015)
+      expect(origin.latitude.to_f).to eq 40.834362
+      expect(origin.longitude.to_f).to eq -74.162015
+    end
   end
 
   it "formats the address" do

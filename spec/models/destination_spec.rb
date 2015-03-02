@@ -38,6 +38,13 @@ RSpec.describe Destination do
       expect(destination.errors.full_messages).to include("Longitude Geocoding failed")
       expect(destination.errors.full_messages).to include("Latitude Geocoding failed")
     end
+
+    it "prioritizes entered lat and lng over geocoded values" do
+      destination = Destination.create(address: "66 Kenzel Ave", city: "Nutley", state: "NJ",
+                                       zip_code: "07110", latitude: 40.834362, longitude: -74.162015)
+      expect(destination.latitude.to_f).to eq 40.834362
+      expect(destination.longitude.to_f).to eq -74.162015
+    end
   end
 
   it "formats the address" do
