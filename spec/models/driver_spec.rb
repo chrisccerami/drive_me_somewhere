@@ -15,4 +15,9 @@ RSpec.describe Driver do
   describe "validations" do
     it { should validate_presence_of :license_number }
   end
+
+  it "shouldn't be approved by default" do
+    driver = Driver.new
+    expect(driver.approved).to eq false
+  end
 end
