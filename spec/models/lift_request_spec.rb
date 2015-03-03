@@ -10,6 +10,7 @@ describe LiftRequest do
   describe "associations" do
     it { should have_one :origin }
     it { should have_one :destination }
+    it { should have_one :lift }
     it { should belong_to :user }
   end
 end

@@ -10,6 +10,7 @@ RSpec.describe Driver do
     it { should belong_to :user }
     it { should have_many :cars }
     it { should have_many :ratings }
+    it { should have_many :lifts }
   end
 
   describe "validations" do

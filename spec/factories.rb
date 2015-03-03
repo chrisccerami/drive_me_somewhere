@@ -7,6 +7,7 @@ FactoryGirl.define do
   end
 
   factory :lift_request do
+    user
     origin
     destination
   end
@@ -30,6 +31,7 @@ FactoryGirl.define do
   end
 
   factory :driver do
+    user
     license_number "123456789"
   end
 
