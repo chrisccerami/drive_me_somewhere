@@ -1,6 +1,7 @@
 class LiftsController < ApplicationController
   def show
     @lift = Lift.find(params[:id])
+    @markers = @lift.populate_markers
   end
 
   def create

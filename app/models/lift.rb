@@ -19,4 +19,12 @@ class Lift < ActiveRecord::Base
   def formatted_distance
     distance.round(2)
   end
+
+  def populate_markers
+    locations = [self.origin, self.destination]
+    markers = Gmaps4rails.build_markers(locations) do |loc, marker|
+      marker.lat loc.latitude
+      marker.lng loc.longitude
+    end
+  end
 end
