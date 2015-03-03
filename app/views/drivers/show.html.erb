@@ -1,0 +1,4 @@
+<%= link_to "Add a Car", new_driver_car_path(@driver) %>
+<% @driver.cars.each do |car| %>
+  <%= car.formatted_name %>
+<% end %>

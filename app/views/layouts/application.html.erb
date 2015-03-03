@@ -17,6 +17,10 @@
   <% end %>
 </div>
 
+<div>
+  <%= link_to "Apply to Become a Driver", new_driver_path %>
+</div>
+
 <% flash.each do |key, value| %>
   <div class="flash flash-<%= key %>">
     <%= value %>

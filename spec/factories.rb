@@ -28,4 +28,17 @@ FactoryGirl.define do
     state "NJ"
     zip_code "07110"
   end
+
+  factory :driver do
+    license_number "123456789"
+  end
+
+  factory :car do
+    driver
+    make "Toyota"
+    model "Prius"
+    year "2015"
+    color "Blue"
+    license_plate "Z99XYZ"
+  end
 end

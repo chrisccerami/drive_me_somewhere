@@ -1,0 +1,18 @@
+  <%= form_for [@driver, @car] do |f| %>
+    <%= f.label :make %>
+    <%= f.text_field :make %>
+
+    <%= f.label :model %>
+    <%= f.text_field :model %>
+
+    <%= f.label :year %>
+    <%= f.text_field :year %>
+
+    <%= f.label :color %>
+    <%= f.text_field :color %>
+
+    <%= f.label :license_plate, "License Plate" %>
+    <%= f.text_field :license_plate %>
+
+    <%= f.submit "Add Car" %>
+  <% end %>

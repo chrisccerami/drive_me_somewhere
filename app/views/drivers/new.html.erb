@@ -1,0 +1,36 @@
+<% if @driver.errors.any? %>
+  <% @driver.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+<% if @car.errors.any? %>
+  <% @car.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+<%= form_for @driver do |f| %>
+  <%= f.label :license_number, "Driver's License Number" %>
+  <%= f.text_field :license_number %>
+
+  <p>Enter details for your car:</p>
+  <%= fields_for :car do |car_field| %>
+    <%= car_field.label :make %>
+    <%= car_field.text_field :make %>
+
+    <%= car_field.label :model %>
+    <%= car_field.text_field :model %>
+
+    <%= car_field.label :year %>
+    <%= car_field.text_field :year %>
+
+    <%= car_field.label :color %>
+    <%= car_field.text_field :color %>
+
+    <%= car_field.label :license_plate, "License Plate" %>
+    <%= car_field.text_field :license_plate %>
+  <% end %>
+
+  <%= f.submit "Submit" %>
+<% end %>

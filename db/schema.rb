@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224071345) do
+ActiveRecord::Schema.define(version: 20150303001920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.integer  "driver_id",     null: false
+    t.string   "make",          null: false
+    t.string   "model",         null: false
+    t.string   "year",          null: false
+    t.string   "color",         null: false
+    t.string   "license_plate", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "destinations", force: :cascade do |t|
     t.integer  "lift_request_id"
@@ -26,6 +37,14 @@ ActiveRecord::Schema.define(version: 20150224071345) do
     t.string   "zip_code",        null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "drivers", force: :cascade do |t|
+    t.integer  "user_id",                        null: false
+    t.string   "license_number",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "approved",       default: false
   end
 
   create_table "lift_requests", force: :cascade do |t|
@@ -44,6 +63,14 @@ ActiveRecord::Schema.define(version: 20150224071345) do
     t.string   "zip_code",        null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "driver_id",  null: false
+    t.integer  "score",      null: false
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

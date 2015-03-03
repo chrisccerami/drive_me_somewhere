@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :lift_requests
+  has_one :driver
 
   validates :name, presence: true
   validates :phone, presence: true
