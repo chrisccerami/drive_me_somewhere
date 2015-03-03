@@ -14,4 +14,14 @@ class LiftsController < ApplicationController
       render lift_request_path(@lift_request)
     end
   end
+
+  def pickup
+    @lift = current_user.driver.lifts.find(params[:id])
+    if @lift.update(status: "in progress", pickup_at: Time.zone.now)
+      flash[:notice] = "Lift started"
+      redirect_to lift_path(@lift)
+    else
+      render :show
+    end
+  end
 end

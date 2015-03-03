@@ -1,3 +1,12 @@
-Pickup passenger at: <%= @lift.origin.full_address %>
+<div>
+  Pick up passenger at: <%= @lift.origin.full_address %>
+</div>
+<p>Once you've picked up the passenger, click 'Start Lift' to begin the ride</p>
+<%= link_to "Start Lift", pickup_lift_path(@lift, { id: @lift.id }), method: :put %>
+<% if @lift.status == "in progress" %>
+  <%= @lift.pickup_time %>
+<% end %>
 
-Their destination is: <%= @lift.destination.full_address %>
+<div>
+  Their destination is: <%= @lift.destination.full_address %>
+</div>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :lifts, only: :create
   end
   resources :lifts, only: :show
+  put "pickup_lift" => "lifts#pickup"
 
   resources :drivers, only: [:show, :new, :create] do
     resources :cars, only: [:new, :create]
