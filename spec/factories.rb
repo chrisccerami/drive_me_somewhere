@@ -48,4 +48,10 @@ FactoryGirl.define do
     color "Blue"
     license_plate "Z99XYZ"
   end
+
+  factory :rating do
+    driver
+    score 90
+    comment "Good ride"
+  end
 end
