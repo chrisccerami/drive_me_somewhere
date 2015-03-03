@@ -36,4 +36,11 @@ feature "Driver accepts a passenger" do
 
     expect(page).to have_content "Lift cancelled"
   end
+
+  it "cancels a lift after picking up" do
+    click_on "Start Lift"
+    click_on "Cancel Lift"
+
+    expect(page).to have_content "Lift cancelled"
+  end
 end
