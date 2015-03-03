@@ -7,4 +7,8 @@ class Lift < ActiveRecord::Base
   def pickup_time
     pickup_at.strftime("%l:%M%p")
   end
+
+  def dropoff_time
+    dropoff_at.strftime("%l:%M%p")
+  end
 end

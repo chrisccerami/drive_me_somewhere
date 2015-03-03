@@ -4,9 +4,17 @@
 <p>Once you've picked up the passenger, click 'Start Lift' to begin the ride</p>
 <%= link_to "Start Lift", pickup_lift_path(@lift, { id: @lift.id }), method: :put %>
 <% if @lift.status == "in progress" %>
-  <%= @lift.pickup_time %>
+  <div>
+    Picked up at: <%= @lift.pickup_time %>
+  </div>
+  <div>
+    <%= link_to "Drop off passenger", dropoff_lift_path(@lift, { id: @lift.id }), method: :put %>
+  </div>
 <% end %>
 
 <div>
   Their destination is: <%= @lift.destination.full_address %>
 </div>
+<% if @lift.status == "complete" %>
+  Dropped off at: <%= @lift.dropoff_time %>
+<% end %>

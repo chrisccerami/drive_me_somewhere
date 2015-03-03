@@ -20,4 +20,12 @@ feature "Driver accepts a passenger" do
     expect(page).to have_content "Lift started"
     expect(page).to have_content @request.lift.pickup_time
   end
+
+  it "drops off a passenger" do
+    click_on "Start Lift"
+    click_on "Drop off passenger"
+
+    expect(page).to have_content "Lift completed"
+    expect(page).to have_content @request.lift.dropoff_time
+  end
 end
