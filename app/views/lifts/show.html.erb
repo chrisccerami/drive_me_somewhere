@@ -16,5 +16,10 @@
   Their destination is: <%= @lift.destination.full_address %>
 </div>
 <% if @lift.status == "complete" %>
-  Dropped off at: <%= @lift.dropoff_time %>
+  <div>
+    Dropped off at: <%= @lift.dropoff_time %>
+  </div>
+  <div>
+    Total distance: <%= @lift.formatted_distance %> miles
+  </div>
 <% end %>

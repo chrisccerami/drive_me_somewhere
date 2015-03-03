@@ -11,4 +11,12 @@ class Lift < ActiveRecord::Base
   def dropoff_time
     dropoff_at.strftime("%l:%M%p")
   end
+
+  def calculate_distance
+    self.distance = origin.distance_to(destination)
+  end
+
+  def formatted_distance
+    distance.round(2)
+  end
 end

@@ -2,6 +2,7 @@ class Destination < ActiveRecord::Base
   include Geokit::Geocoders
 
   belongs_to :lift_request
+  acts_as_mappable
 
   before_validation :geocode
 
@@ -27,5 +28,13 @@ class Destination < ActiveRecord::Base
         errors.add(:latitude, "Geocoding failed")
       end
     end
+  end
+
+  def lat
+    latitude
+  end
+
+  def lng
+    longitude
   end
 end

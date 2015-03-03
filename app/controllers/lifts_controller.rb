@@ -27,6 +27,7 @@ class LiftsController < ApplicationController
 
   def dropoff
     @lift = current_user.driver.lifts.find(params[:id])
+    @lift.calculate_distance
     if @lift.update(status: "complete", dropoff_at: Time.zone.now)
       flash[:notice] = "Lift completed"
       redirect_to lift_path(@lift)
