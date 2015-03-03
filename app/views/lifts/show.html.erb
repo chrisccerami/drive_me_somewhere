@@ -14,6 +14,9 @@
 <% if @lift.status == "in progress" || @lift.status == "accepted" %>
   <%= link_to "Cancel Lift", lift_path(@lift), method: :delete %>
 <% end %>
+<% if @lift.lift_request.user == current_user %>
+  <%= link_to "Cancel Lift", lift_request_path(@lift.lift_request), method: :delete %>
+<% end %>
 
 <div>
   Their destination is: <%= @lift.destination.full_address %>

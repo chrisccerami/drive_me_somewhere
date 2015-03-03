@@ -12,6 +12,11 @@ FactoryGirl.define do
     destination
   end
 
+  factory :lift do
+    lift_request
+    driver
+  end
+
   factory :origin do
     longitude 42.349932
     latitude -71.163295

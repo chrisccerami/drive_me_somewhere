@@ -64,17 +64,28 @@ feature "Lift Request" do
   end
 
   context "deleting a request" do
-    it "removes the request" do
+    before(:each) do
       user = FactoryGirl.create(:user)
       sign_in(user)
-      lift_request = FactoryGirl.create(:lift_request, user: user)
+      @lift_request = FactoryGirl.create(:lift_request, user: user)
+    end
 
-      visit lift_request_path(lift_request)
+    it "removes the request before pickup" do
+      visit lift_request_path(@lift_request)
 
       click_on "Cancel Request"
 
       expect(page).to have_content "Request cancelled"
-      expect(page).not_to have_content lift_request.destination.address
+      expect(page).not_to have_content @lift_request.destination.address
+    end
+
+    it "removes the request from lift page" do
+      lift = FactoryGirl.create(:lift, lift_request: @lift_request)
+
+      visit lift_path(lift)
+      click_on "Cancel Lift"
+
+      expect(page).to have_content "Request cancelled"
     end
   end
 end
