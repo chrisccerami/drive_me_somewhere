@@ -28,7 +28,7 @@ feature "Driver accepts a passenger" do
     expect(page).to have_content "Lift completed"
     expect(page).to have_content @request.lift.dropoff_time
     expect(page).to have_content "Total distance: " +
-                                 "#{@request.lift.formatted_distance} miles"
+      "#{@request.lift.formatted_distance} miles"
   end
 
   it "cancels a lift before picking up" do
