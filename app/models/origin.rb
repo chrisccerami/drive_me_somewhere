@@ -29,4 +29,12 @@ class Origin < ActiveRecord::Base
       end
     end
   end
+
+  def lat
+    latitude
+  end
+
+  def lng
+    longitude
+  end
 end

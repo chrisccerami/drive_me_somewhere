@@ -1,6 +1,7 @@
 class LiftRequest < ActiveRecord::Base
-  has_one :origin
-  has_one :destination
+  has_one :origin, dependent: :destroy
+  has_one :destination, dependent: :destroy
+  has_one :lift, dependent: :destroy
 
   belongs_to :user
 

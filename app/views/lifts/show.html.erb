@@ -1,0 +1,31 @@
+<div>
+  Pick up passenger at: <%= @lift.origin.full_address %>
+</div>
+<p>Once you've picked up the passenger, click 'Start Lift' to begin the ride</p>
+<%= link_to "Start Lift", pickup_lift_path(@lift, { id: @lift.id }), method: :put %>
+<% if @lift.status == "in progress" %>
+  <div>
+    Picked up at: <%= @lift.pickup_time %>
+  </div>
+  <div>
+    <%= link_to "Drop off passenger", dropoff_lift_path(@lift, { id: @lift.id }), method: :put %>
+  </div>
+<% end %>
+<% if @lift.status == "in progress" || @lift.status == "accepted" %>
+  <%= link_to "Cancel Lift", lift_path(@lift), method: :delete %>
+<% end %>
+<% if @lift.lift_request.user == current_user %>
+  <%= link_to "Cancel Lift", lift_request_path(@lift.lift_request), method: :delete %>
+<% end %>
+
+<div>
+  Their destination is: <%= @lift.destination.full_address %>
+</div>
+<% if @lift.status == "complete" %>
+  <div>
+    Dropped off at: <%= @lift.dropoff_time %>
+  </div>
+  <div>
+    Total distance: <%= @lift.formatted_distance %> miles
+  </div>
+<% end %>

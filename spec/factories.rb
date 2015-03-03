@@ -7,8 +7,14 @@ FactoryGirl.define do
   end
 
   factory :lift_request do
+    user
     origin
     destination
+  end
+
+  factory :lift do
+    lift_request
+    driver
   end
 
   factory :origin do
@@ -30,6 +36,7 @@ FactoryGirl.define do
   end
 
   factory :driver do
+    user
     license_number "123456789"
   end
 
@@ -40,5 +47,11 @@ FactoryGirl.define do
     year "2015"
     color "Blue"
     license_plate "Z99XYZ"
+  end
+
+  factory :rating do
+    driver
+    score 90
+    comment "Good ride"
   end
 end

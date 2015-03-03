@@ -14,5 +14,7 @@
   <%= @lift_request.destination.zip_code %></div>
 </p>
 
+<%= link_to "Accept Lift", lift_request_lifts_path(@lift_request), method: :post %>
+
 <%= link_to "Edit Request", edit_lift_request_path(@lift_request) %>
 <%= button_to "Cancel Request", lift_request_path(@lift_request), method: :delete %>
