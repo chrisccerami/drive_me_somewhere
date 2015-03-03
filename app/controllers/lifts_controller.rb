@@ -15,6 +15,16 @@ class LiftsController < ApplicationController
     end
   end
 
+  def destroy
+    @lift = current_user.driver.lifts.find(params[:id])
+    if @lift.destroy
+      flash[:notice] = "Lift cancelled"
+      redirect_to lift_requests_path
+    else
+      render :show
+    end
+  end
+
   def pickup
     @lift = current_user.driver.lifts.find(params[:id])
     if @lift.update(status: "in progress", pickup_at: Time.zone.now)

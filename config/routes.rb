@@ -5,7 +5,7 @@ Rails.application.routes.draw do
                                    :edit, :update, :destroy] do
     resources :lifts, only: :create
   end
-  resources :lifts, only: :show
+  resources :lifts, only: [:show, :destroy]
   put "pickup_lift" => "lifts#pickup"
   put "dropoff_lift" => "lifts#dropoff"
 

@@ -11,6 +11,9 @@
     <%= link_to "Drop off passenger", dropoff_lift_path(@lift, { id: @lift.id }), method: :put %>
   </div>
 <% end %>
+<% if @lift.status == "in progress" || @lift.status == "accepted" %>
+  <%= link_to "Cancel Lift", lift_path(@lift), method: :delete %>
+<% end %>
 
 <div>
   Their destination is: <%= @lift.destination.full_address %>
