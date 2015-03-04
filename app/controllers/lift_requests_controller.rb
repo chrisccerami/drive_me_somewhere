@@ -6,7 +6,7 @@ class LiftRequestsController < ApplicationController
   end
 
   def index
-    @lift_requests = LiftRequest.all
+    @lift_requests = LiftRequest.active
   end
 
   def new

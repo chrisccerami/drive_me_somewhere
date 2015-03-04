@@ -7,4 +7,8 @@ class LiftRequest < ActiveRecord::Base
 
   validates_associated :origin
   validates_associated :destination
+
+  def self.active
+    joins(:lift).where.not("lifts.status" => "complete")
+  end
 end
