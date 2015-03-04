@@ -1,4 +1,5 @@
 class Lift < ActiveRecord::Base
+  include Geokit::Geocoders
   belongs_to :lift_request
   belongs_to :driver
   has_one :origin, through: :lift_request
@@ -18,5 +19,38 @@ class Lift < ActiveRecord::Base
 
   def formatted_distance
     distance.round(2)
+  end
+
+  def accepted?
+    status == "accepted"
+  end
+
+  def in_progress?
+    status == "in progress"
+  end
+
+  def complete?
+    status == "complete"
+  end
+
+  def point_a(request)
+    if self.accepted?
+      loc = Geokit::Geocoders::IpGeocoder.geocode(request.ip)
+      { lat: loc.lat,
+        lng: loc.lng }
+    elsif self.in_progress? || self.complete?
+      { lat: origin.latitude,
+        lng: origin.longitude }
+    end
+  end
+
+  def point_b
+    if self.accepted?
+      { lat: origin.latitude,
+        lng: origin.longitude }
+    elsif self.in_progress? || self.complete?
+      { lat: destination.latitude,
+        lng: destination.longitude }
+    end
   end
 end

@@ -1,6 +1,8 @@
 class LiftsController < ApplicationController
   def show
     @lift = Lift.find(params[:id])
+    @origin = @lift.point_a(request)
+    @destination = @lift.point_b
   end
 
   def create
