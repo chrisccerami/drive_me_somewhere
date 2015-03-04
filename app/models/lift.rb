@@ -35,9 +35,9 @@ class Lift < ActiveRecord::Base
 
   def point_a(request)
     if self.accepted?
-      loc = Geokit::Geocoders::IpGeocoder.geocode(request.ip)
-      { lat: loc.lat,
-        lng: loc.lng }
+      loc = request.location
+      { lat: loc.latitude,
+        lng: loc.longitude }
     elsif self.in_progress? || self.complete?
       { lat: origin.latitude,
         lng: origin.longitude }

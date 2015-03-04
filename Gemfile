@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'geokit-rails'
+gem 'geocoder'
 gem 'gmaps4rails'
 
 group :development, :test do
