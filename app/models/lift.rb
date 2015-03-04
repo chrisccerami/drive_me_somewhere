@@ -20,11 +20,32 @@ class Lift < ActiveRecord::Base
     distance.round(2)
   end
 
+  def accepted?
+    self.status == "accepted"
+  end
+
+  def in_progress?
+    self.status == "in progress"
+  end
+
+  def complete?
+    self.status == "complete"
+  end
+
   def populate_markers
-    locations = [self.origin, self.destination]
     markers = Gmaps4rails.build_markers(locations) do |loc, marker|
       marker.lat loc.latitude
       marker.lng loc.longitude
+    end
+  end
+
+  def locations
+    if self.accepted?
+      self.origin
+    elsif self.in_progress?
+      self.destination
+    elsif self.complete?
+      [self.origin, self.destination]
     end
   end
 end
