@@ -39,12 +39,28 @@
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'></script>
 
 <script>
-  $("#map").ready(function() {
-    var handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%=raw @markers.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var directionsService = new google.maps.DirectionsService();
+
+  function calcRoute() {
+    var origin      = new google.maps.LatLng(<%= @origin[:lat] %>, <%= @origin[:lng] %>);
+    var destination = new google.maps.LatLng(<%= @destination[:lat] %>, <%= @destination[:lng] %>);
+    var request = {
+        origin:      origin,
+        destination: destination,
+        travelMode:  google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
     });
+  }
+
+  calcRoute();
+
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ internal: {id: 'map'}}, function(){
+    directionsDisplay.setMap(handler.getMap());
   });
 </script>

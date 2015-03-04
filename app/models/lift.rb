@@ -1,4 +1,5 @@
 class Lift < ActiveRecord::Base
+  include Geokit::Geocoders
   belongs_to :lift_request
   belongs_to :driver
   has_one :origin, through: :lift_request
@@ -32,20 +33,24 @@ class Lift < ActiveRecord::Base
     self.status == "complete"
   end
 
-  def populate_markers
-    markers = Gmaps4rails.build_markers(locations) do |loc, marker|
-      marker.lat loc.latitude
-      marker.lng loc.longitude
+  def point_a(request)
+    if self.accepted?
+      loc = Geokit::Geocoders::IpGeocoder.geocode(request.ip)
+      { lat: loc.lat,
+        lng: loc.lng }
+    elsif self.in_progress? || self.complete?
+      { lat: self.origin.latitude,
+        lng: self.origin.longitude }
     end
   end
 
-  def locations
+  def point_b
     if self.accepted?
-      self.origin
-    elsif self.in_progress?
-      self.destination
-    elsif self.complete?
-      [self.origin, self.destination]
+      { lat: self.origin.latitude,
+        lng: self.origin.longitude }
+    elsif self.in_progress? || self.complete?
+      { lat: self.destination.latitude,
+        lng: self.destination.longitude }
     end
   end
 end
