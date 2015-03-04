@@ -22,15 +22,15 @@ class Lift < ActiveRecord::Base
   end
 
   def accepted?
-    self.status == "accepted"
+    status == "accepted"
   end
 
   def in_progress?
-    self.status == "in progress"
+    status == "in progress"
   end
 
   def complete?
-    self.status == "complete"
+    status == "complete"
   end
 
   def point_a(request)
@@ -39,18 +39,18 @@ class Lift < ActiveRecord::Base
       { lat: loc.lat,
         lng: loc.lng }
     elsif self.in_progress? || self.complete?
-      { lat: self.origin.latitude,
-        lng: self.origin.longitude }
+      { lat: origin.latitude,
+        lng: origin.longitude }
     end
   end
 
   def point_b
     if self.accepted?
-      { lat: self.origin.latitude,
-        lng: self.origin.longitude }
+      { lat: origin.latitude,
+        lng: origin.longitude }
     elsif self.in_progress? || self.complete?
-      { lat: self.destination.latitude,
-        lng: self.destination.longitude }
+      { lat: destination.latitude,
+        lng: destination.longitude }
     end
   end
 end
